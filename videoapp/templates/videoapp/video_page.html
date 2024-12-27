@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black; /* Черный фон */
+            display: flex;
+            justify-content: center; /* Центрирование по горизонтали */
+            align-items: center; /* Центрирование по вертикали */
+            overflow: hidden;
+        }
+
+        video {
+            height: 100%; /* Заполнение всей высоты */
+            width: auto; /* Сохранение пропорций видео */
+            object-fit: cover; /* Обрезка видео, если необходимо */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay controls>
+        <source src="{% static 'videoapp/video.mp4' %}" type="video/mp4">
+        Ваш браузер не поддерживает тег video.
+    </video>
+</body>
+</html>

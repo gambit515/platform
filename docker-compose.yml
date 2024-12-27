@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: django_container
+    command: python manage.py runserver 0.0.0.0:5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /var/www/media:/app/media  # Связывание директории медиафайлов
+    depends_on:
+      - db  # Указывает, что база должна стартовать перед Django
+    networks:
+      - site_network
+
+  db:
+    image: postgres:13
+    container_name: site_db
+    environment:
+      POSTGRES_USER: gambit
+      POSTGRES_PASSWORD: 316316
+      POSTGRES_DB: site_db
+    ports:
+      - "5433:5432"
+    networks:
+      - site_network
+
+
+networks:
+  site_network:
+    driver: bridge
