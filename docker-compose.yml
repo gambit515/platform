@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: 316316
       POSTGRES_DB: site_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - site_network
 
