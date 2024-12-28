@@ -4,9 +4,9 @@ services:
   web:
     build: .
     container_name: django_container
-    command: python manage.py runserver 0.0.0.0:5000
+    command: python platform_core/manage.py runserver 0.0.0.0:8000
     ports:
-      - "5000:5000"
+      - "8000:8000"
     volumes:
       - .:/app
       - /var/www/media:/app/media  # Связывание директории медиафайлов
