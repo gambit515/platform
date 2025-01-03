@@ -27,6 +27,17 @@ services:
     networks:
       - site_network
 
+  bot:
+    build: .
+    container_name: obhaga_bot
+    command: python obhaga_bot/main.py
+    ports:
+      - "8080:8080"
+    depends_on:
+      - web
+    networks:
+      - site_network
+
 
 networks:
   site_network:
