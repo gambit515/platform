@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*j^kgi*-&(da6_5^ew11$etqc5leycr7@i1+2gcdj17n%5fo(b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["62.217.183.77","localhost","http://gambitcorporation.ru"]
+ALLOWED_HOSTS = ["62.217.183.77","localhost","gambitcorporation.ru","127.0.0.1","gambitcorporation.ru"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'obhaga_api',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,33 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'platform_core.urls'
+
+
+# Настройки для подключения к Beget S3
+AWS_ACCESS_KEY_ID = 'QGIUXM83XJNDWOTKWVGH'  # Ваш Access Key
+AWS_SECRET_ACCESS_KEY = '6ryOwJCr3rIdabPUSSSV72ivPiYmBcfyFoGdtmhT'  # Ваш Secret Key
+AWS_STORAGE_BUCKET_NAME = 'ee891ff0c591-fat-cloud'  # Имя вашего бакета
+AWS_S3_REGION_NAME = 'ru1'  # Регион для Beget S3
+AWS_S3_ENDPOINT_URL = 'https://s3.ru1.storage.beget.cloud'  # URL для Beget S3
+
+# Параметры для хранения статических файлов
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',  # Пример настройки кэширования
+}
+
+# Использование S3 для хранения статических файлов
+AWS_LOCATION = 'static'
+
+# Настройка для хранения медиа файлов
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Настройки для статических файлов
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Путь для статических файлов
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/{AWS_LOCATION}/'
+
+
 
 TEMPLATES = [
     {
