@@ -11,9 +11,19 @@ from .serializers import CategorySerializer, ProductSerializer
 
 class CategoryListView(APIView):
     def get(self, request):
-        categories = Category.objects.all()
-        serializer = CategorySerializer(categories, many=True)
-        return Response(serializer.data)
+        category_id = request.query_params.get('id')  # Получаем параметр 'id' из запроса
+
+        if category_id:
+            try:
+                category = Category.objects.get(id=category_id)  # Ищем категорию по id
+                serializer = CategorySerializer(category)
+                return Response(serializer.data)
+            except Category.DoesNotExist:
+                return Response({"error": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            categories = Category.objects.all()  # Если 'id' не передан, возвращаем все категории
+            serializer = CategorySerializer(categories, many=True)
+            return Response(serializer.data)
 
 
 class ProductListView(APIView):

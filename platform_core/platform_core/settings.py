@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*j^kgi*-&(da6_5^ew11$etqc5leycr7@i1+2gcdj17n%5fo(b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["62.217.183.77", "localhost", "gambitcorporation.ru", "127.0.0.1"]
+ALLOWED_HOSTS = ["62.217.183.77", "localhost", "gambitcorporation.ru", "127.0.0.1",'web']
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'obhaga_api',
     'storages',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -100,8 +101,13 @@ WSGI_APPLICATION = 'platform_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'site_db',  # Имя базы данных
+        #'NAME': 'site_db',  # Имя базы данных
+        'USER': 'gambit',  # Имя пользователя
+        'PASSWORD': '316316',  # Пароль
+        'HOST': 'site_db',  # Имя хоста, соответствующее сервису db
+        'PORT': '5432',
     }
 }
 

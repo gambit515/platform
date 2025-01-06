@@ -31,13 +31,12 @@ services:
     build: .
     container_name: obhaga_bot
     command: python obhaga_bot/main.py
-    ports:
-      - "8080:8080"
     depends_on:
       - web
     networks:
       - site_network
-
+    # Здесь вы можете добавить дополнительные настройки для обеспечения того,
+    # чтобы бот запускался только после того, как web (Django API) будет готов.
 
 networks:
   site_network:
