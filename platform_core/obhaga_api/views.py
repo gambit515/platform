@@ -9,6 +9,7 @@ from rest_framework import status
 from .models import Category, Product
 from .serializers import CategorySerializer, ProductSerializer
 
+
 class CategoryListView(APIView):
     def get(self, request):
         category_id = request.query_params.get('id')  # Получаем параметр 'id' из запроса

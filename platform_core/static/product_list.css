@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem; /* Используем rem для адаптивности */
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem; /* Используем rem для адаптивности */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem; /* Используем rem для адаптивности */
+}
+
+.products-container {
+    display: flex; /* Включаем Flexbox */
+    flex-wrap: wrap; /* Позволяем перенос карточек на следующую строку при недостатке места */
+    justify-content: space-between; /* Равномерно распределяем карточки с учетом пространства */
+    align-items: stretch; /* Растягиваем карточки по высоте для одинакового размера */
+    gap: 1rem; /* Добавляем расстояние между карточками */
+    padding: 1rem; /* Отступы внутри секции */
+    box-sizing: border-box; /* Учитываем отступы и границы в расчете размеров */
+}
+
+.product-card {
+    flex: 0 1 calc(20% - 1rem); /* Каждая карточка занимает 20% ширины контейнера (5 карточек в ряд), минус отступы */
+    display: flex;
+    flex-direction: column; /* Все элементы внутри карточки располагаются вертикально */
+    justify-content: space-between; /* Равномерно распределяем элементы внутри карточки */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.product-card img {
+    max-width: 100%; /* Ограничиваем ширину изображения */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin-bottom: 1rem; /* Отступ снизу для равномерности */
+}
+
+.product-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #000000;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem; /* Используем rem для адаптивности */
+    background: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Дополнительные стили для адаптивности */
+@media (max-width: 1200px) {
+    .product-card {
+        width: calc(25% - 3rem); /* 4 карточки в ряд на экранах меньше 1200px */
+    }
+}
+
+@media (max-width: 900px) {
+    .product-card {
+        width: calc(33.33% - 3rem); /* 3 карточки в ряд на экранах меньше 900px */
+    }
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: calc(50% - 3rem); /* 2 карточки в ряд на экранах меньше 600px */
+    }
+}
+
+@media (max-width: 400px) {
+    .product-card {
+        width: calc(100% - 3rem); /* 1 карточка в ряд на экранах меньше 400px */
+    }
+}

@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('obhaga_api.urls')),
+    path('site/', include('site_products.urls')),
 ]

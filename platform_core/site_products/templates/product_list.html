@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары</title>
+    <link rel="stylesheet" href="{% static 'product_list.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Наши товары</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'product_list' %}">Все категории</a></li>
+                {% for category in categories %}
+                    <li><a href="{% url 'product_list_by_category' category.id %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>{% if selected_category %}{{ selected_category.name }}{% else %}Все товары{% endif %}</h2>
+        <section id="products" class="products-container">
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>В наличии: {% if product.in_stock %}Да{% else %}Нет{% endif %}</p>
+                </div>
+            {% empty %}
+                <p>Нет товаров в этой категории.</p>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Онлайн-магазин. Все права защищены.</p>
+    </footer>
+</body>
+</html>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'obhaga_api',
     'storages',
     'django.contrib.postgres',
+    'site_products',
 ]
 
 MIDDLEWARE = [
